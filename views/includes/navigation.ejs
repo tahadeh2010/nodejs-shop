@@ -1,0 +1,27 @@
+<nav class="bg-slate-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-3 py-4">
+      <div class="flex flex-wrap items-center gap-2 text-sm sm:text-base">
+        <a class="rounded-md px-3 py-2 hover:bg-slate-800 <%= path === '/' ? 'bg-slate-800' : '' %>" href="/">خانه</a>
+        <a class="rounded-md px-3 py-2 hover:bg-slate-800 <%= path === '/products' ? 'bg-slate-800' : '' %>" href="/products">محصولات</a>
+        <% if(isAuthenticated) { %>
+          <a class="rounded-md px-3 py-2 hover:bg-slate-800 <%= path === '/cart' ? 'bg-slate-800' : '' %>" href="/cart">سبد خرید</a>
+          <a class="rounded-md px-3 py-2 hover:bg-slate-800 <%= path === '/orders' ? 'bg-slate-800' : '' %>" href="/orders">سفارشات</a>
+          <a class="rounded-md px-3 py-2 hover:bg-slate-800 <%= path === '/admin/add-product' ? 'bg-slate-800' : '' %>" href="/admin/add-product">افزودن محصول</a>
+          <a class="rounded-md px-3 py-2 hover:bg-slate-800 <%= path === '/admin/products' ? 'bg-slate-800' : '' %>" href="/admin/products">محصولات ادمین</a>
+        <% } %>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 text-sm sm:text-base">
+        <% if(!isAuthenticated) { %>
+          <a class="rounded-md px-3 py-2 hover:bg-slate-800" href="/login">ورود</a>
+          <a class="rounded-md px-3 py-2 hover:bg-slate-800" href="/signup">ثبت نام</a>
+        <% } else { %>
+          <form action="/logout" method="post" class="inline">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="rounded-md px-3 py-2 hover:bg-slate-800" id="navBtn" type="submit">خروج</button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs') %> <%- include('../includes/heading.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+<main class="py-12">
+  <div class="container mx-auto space-y-6">
+    <% if(refId){ %>
+      <div class="rounded-3xl bg-emerald-100 p-6 text-emerald-800 shadow-lg border border-emerald-200">
+        <h4 class="text-lg font-semibold">پرداخت شما با موفقیت انجام شد</h4>
+        <p class="mt-2">شماره تراکنش: <span class="font-semibold text-slate-900"><%= refId %></span></p>
+      </div>
+    <% } %>
+
+    <% if(orders.length <= 0) { %>
+      <div class="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-lg">
+        <h2 class="text-2xl font-semibold text-slate-900">سفارشی ثبت نشده</h2>
+      </div>
+    <% } else { %>
+      <ul class="space-y-6">
+        <% orders.forEach(order => { %>
+          <li class="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <h3 class="text-lg font-semibold text-slate-900">سفارش - <%= order._id %></h3>
+              <a href="/invoices/<%= order._id %>" class="rounded-2xl bg-sky-600 px-4 py-2 text-white transition hover:bg-sky-700">گزارش</a>
+            </div>
+            <ul class="mt-4 space-y-2">
+              <% order.products.forEach(p => { %>
+                <li class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700"> <%= p.product.title %> ( <%= p.quantity %> )</li>
+              <% }) %>
+            </ul>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+</main>
+
+<%- include('../includes/end.ejs') %>

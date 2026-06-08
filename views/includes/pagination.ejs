@@ -1,0 +1,32 @@
+
+  <section class="py-6">
+    <div class="flex justify-center">
+      <nav aria-label="Page navigation">
+        <ul class="inline-flex items-center gap-2">
+          <% if(hasPreviousPage) { %>
+            <li>
+              <a href="?page=<%= previousPage %>" class="rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-700 hover:bg-slate-100" aria-label="Previous">&laquo;</a>
+            </li>
+          <% } %>
+          <% if(currentPage !== 1) { %>
+            <li>
+              <a href="?page=1" class="rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-700 hover:bg-slate-100">1</a>
+            </li>
+          <% } %>
+          <li>
+            <a href="?page=<%= currentPage %>" class="rounded-md border border-slate-900 bg-slate-900 px-3 py-2 text-white"><%= currentPage %></a>
+          </li>
+          <% if(lastPage !== currentPage && nextPage !== lastPage) { %>
+            <li>
+              <a href="?page=<%= lastPage %>" class="rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-700 hover:bg-slate-100"><%= lastPage %></a>
+            </li>
+          <% } %>
+          <% if(hasNextPage) { %>
+            <li>
+              <a href="?page=<%= nextPage %>" class="rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-700 hover:bg-slate-100" aria-label="Next">&raquo;</a>
+            </li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+  </section>

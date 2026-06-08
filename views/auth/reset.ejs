@@ -1,0 +1,36 @@
+<%- include('../includes/head.ejs') %>
+
+<section class="min-h-screen bg-slate-50 py-16">
+  <div class="container mx-auto">
+    <div class="max-w-md mx-auto rounded-3xl bg-white p-8 shadow-xl">
+      <div class="text-center mb-6">
+        <h3 class="text-2xl font-semibold text-slate-900">بازیابی رمز عبور</h3>
+        <p class="mt-2 text-slate-600">ایمیل خود را وارد کنید تا لینک بازیابی برایتان ارسال شود.</p>
+      </div>
+
+      <% if(errorMessage){ %>
+        <div class="mb-4 rounded-2xl bg-red-100 p-4 text-red-700 border border-red-200"><%= errorMessage %></div>
+      <% } %>
+
+      <form action="/reset" method="post" class="space-y-5">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
+        <div>
+          <input
+            name="email"
+            type="email"
+            id="email"
+            class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+            placeholder="ایمیل"
+          />
+        </div>
+
+        <button class="w-full rounded-2xl bg-slate-900 px-4 py-3 text-white transition hover:bg-slate-700" type="submit">
+          ارسال رمز عبور
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<%- include('../includes/end.ejs') %>

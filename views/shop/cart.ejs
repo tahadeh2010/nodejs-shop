@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs') %> <%- include('../includes/heading.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+<main class="py-12">
+  <div class="container mx-auto">
+    <% if(products.length > 0) { %>
+      <ul class="space-y-6">
+        <% products.forEach(p => { %>
+          <li class="flex flex-col gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-lg md:flex-row md:items-center md:justify-between">
+            <div class="flex items-center gap-4">
+              <img src="/<%= p.productId.imageUrl %>" alt="<%= p.productId.title %>" class="h-24 w-24 rounded-3xl object-cover" />
+              <div>
+                <h2 class="text-lg font-semibold text-slate-900"><%= p.productId.title %></h2>
+                <p class="text-slate-600">تعداد: <%= p.quantity %></p>
+              </div>
+            </div>
+            <form action="/cart-delete-item" method="post" class="mt-4 md:mt-0">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <input type="hidden" value="<%= p.productId._id %>" name="productId" />
+              <button type="submit" class="rounded-2xl bg-red-600 px-4 py-2 text-white transition hover:bg-red-700">حذف</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+
+      <div class="mt-10 text-center">
+        <a class="inline-flex rounded-2xl bg-sky-600 px-6 py-3 text-white transition hover:bg-sky-700" href="/checkout">سفارش</a>
+      </div>
+    <% } else { %>
+      <div class="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-lg">
+        <h1 class="text-2xl font-semibold text-slate-900">سبد خرید خالی است</h1>
+      </div>
+    <% } %>
+  </div>
+</main>
+
+<%- include('../includes/end.ejs') %>

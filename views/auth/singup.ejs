@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %>
+
+<section class="min-h-screen bg-slate-50 py-16">
+  <div class="container mx-auto">
+    <div class="max-w-md mx-auto rounded-3xl bg-white p-8 shadow-xl">
+      <div class="text-center mb-6">
+        <h3 class="text-2xl font-semibold text-slate-900">ثبت نام</h3>
+        <p class="mt-2 text-slate-600">یک حساب جدید ایجاد کنید.</p>
+      </div>
+
+      <% if(errorMessage){ %>
+        <div class="mb-4 rounded-2xl bg-red-100 p-4 text-red-700 border border-red-200"><%= errorMessage %></div>
+      <% } %>
+
+      <form action="/signup" method="post" novalidate class="space-y-5">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+        <div>
+          <input name="email" type="email" id="email" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 <%= validationErrors.find(e => e.param ==='email' ) ? 'border-red-400 bg-red-50' : '' %>" placeholder="نام کاربری یا ایمیل" value="<%= oldInput.email %>" />
+        </div>
+
+        <div>
+          <input name="password" type="password" id="password" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 <%= validationErrors.find(e => e.param ==='password' ) ? 'border-red-400 bg-red-50' : '' %>" placeholder="رمز عبور" value="<%= oldInput.password %>" />
+        </div>
+
+        <div>
+          <input name="confimPassword" type="password" id="confirmPassword" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 <%= validationErrors.find(e => e.param ==='confimPassword' ) ? 'border-red-400 bg-red-50' : '' %>" placeholder="تکرار رمز عبور" value="<%= oldInput.confirmPassword %>" />
+        </div>
+
+        <button class="w-full rounded-2xl bg-emerald-600 px-4 py-3 text-white transition hover:bg-emerald-700" type="submit">
+          ثبت نام
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<%- include('../includes/end.ejs') %>
