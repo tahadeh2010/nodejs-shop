@@ -55,11 +55,7 @@ const adminRouter = require("./routes/admin");
 const shopRouter = require("./routes/shop");
 const authRouter = require("./routes/auth");
 
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
+app.use(express.urlencoded({ extended: false }));
 app.use(
   multer({
     storage: fileStorage,
