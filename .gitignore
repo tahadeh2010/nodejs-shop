@@ -1,4 +1,4 @@
 node_modules/
 .env
-image/*
-!image/.gitkeep
+images/*
+!images/.gitkeep
